@@ -21,7 +21,7 @@ const Contact = () => {
           </div>
           <div className="flex items-center mb-4">
             <FaPhone className="text-green-600 text-2xl mr-2" />
-            <p>(613) 555-1234</p>
+            <p>(613) 406-2254</p>
           </div>
           <div className="flex space-x-4">
             <FaFacebook className="text-3xl text-blue-700 cursor-pointer" />
