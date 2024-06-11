@@ -28,20 +28,25 @@ const FAQ = () => {
 
   return (
     <div>
-      <div className="flex-col relative h-96 bg-cover bg-center text-center text-white flex items-center justify-center" style={{ backgroundImage: `url(${faqBanner})` }}>
-        <h1 className="text-7xl font-bold mb-12 w-3/5">Frequently Asked Questions</h1>
+      <div
+        className="flex-col relative h-72 md:h-96 bg-cover bg-center text-center text-white flex items-center justify-center"
+        style={{ backgroundImage: `url(${faqBanner})` }}
+      >
+        <h1 className="text-3xl md:text-7xl font-bold mb-6 md:mb-12 w-4/5 md:w-3/5">
+          Frequently Asked Questions
+        </h1>
       </div>
-      <div className="container mx-auto py-12 px-4 md:px-12">
-        <h2 className="text-4xl mb-6 text-center font-semibold">Frequently Asked Questions</h2>
+      <div className="container mx-auto py-8 md:py-12 px-4 md:px-12">
+        <h2 className="text-2xl md:text-4xl mb-6 text-center font-semibold">Frequently Asked Questions</h2>
         <div className="space-y-4">
           {faqData.map((faq, index) => (
             <div key={index} className="border-b-2 border-gray-400 pb-4">
               <div className="flex justify-between items-center cursor-pointer" onClick={() => toggleFAQ(index)}>
-                <h3 className="text-2xl text-gray-800">{faq.question}</h3>
-                <span className="text-2xl">{openIndexes.includes(index) ? '-' : '+'}</span>
+                <h3 className="text-xl md:text-2xl text-gray-800">{faq.question}</h3>
+                <span className="text-xl md:text-2xl">{openIndexes.includes(index) ? '-' : '+'}</span>
               </div>
               {openIndexes.includes(index) && (
-                <p className="mt-12 text-gray-700 pb-12">{faq.answer}</p>
+                <p className="mt-4 md:mt-12 text-gray-700 pb-4 md:pb-12">{faq.answer}</p>
               )}
             </div>
           ))}
