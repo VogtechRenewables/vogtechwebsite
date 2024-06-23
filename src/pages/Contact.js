@@ -1,8 +1,50 @@
-import React from 'react';
+import React, { useState } from 'react';
 import contactBanner from '../images/contact_banner.webp';
 import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram, FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch('http://localhost:5001/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        alert('Email sent successfully');
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          message: ''
+        });
+      } else {
+        throw new Error('Failed to send email');
+      }
+    } catch (error) {
+      console.error('Error sending email:', error);
+      alert('Failed to send email');
+    }
+  };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
   return (
     <div>
       <div className="flex-col relative h-96 bg-cover bg-center text-center text-white flex items-center justify-center" style={{ backgroundImage: `url(${contactBanner})` }}>
@@ -32,15 +74,57 @@ const Contact = () => {
         </div>
         <div className="w-full md:w-1/2">
           <h2 className="text-3xl font-bold mb-6">Get in Touch</h2>
-          <form className="space-y-4">
+          <form className="space-y-4" onSubmit={handleSubmit}>
             <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
-              <input type="text" placeholder="First Name" className="w-full p-2 border border-gray-300 rounded" />
-              <input type="text" placeholder="Last Name" className="w-full p-2 border border-gray-300 rounded" />
+              <input
+                type="text"
+                name="firstName"
+                value={formData.firstName}
+                onChange={handleChange}
+                placeholder="First Name"
+                className="w-full p-2 border border-gray-300 rounded"
+                required
+              />
+              <input
+                type="text"
+                name="lastName"
+                value={formData.lastName}
+                onChange={handleChange}
+                placeholder="Last Name"
+                className="w-full p-2 border border-gray-300 rounded"
+                required
+              />
             </div>
-            <input type="email" placeholder="Email" className="w-full p-2 border border-gray-300 rounded" />
-            <input type="tel" placeholder="Phone Number" className="w-full p-2 border border-gray-300 rounded" />
-            <textarea placeholder="Message" className="w-full p-2 border border-gray-300 rounded" rows="5"></textarea>
-            <button type="submit" className="w-full p-2 bg-green-600 text-white font-bold rounded">Send Message</button>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Email"
+              className="w-full p-2 border border-gray-300 rounded"
+              required
+            />
+            <input
+              type="tel"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              placeholder="Phone Number"
+              className="w-full p-2 border border-gray-300 rounded"
+              required
+            />
+            <textarea
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              placeholder="Message"
+              className="w-full p-2 border border-gray-300 rounded"
+              rows="5"
+              required
+            ></textarea>
+            <button type="submit" className="w-full p-2 bg-green-600 text-white font-bold rounded">
+              Send Message
+            </button>
           </form>
         </div>
       </div>
@@ -58,7 +142,7 @@ const Contact = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Contact;

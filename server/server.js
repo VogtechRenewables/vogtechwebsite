@@ -1,11 +1,17 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
+const cors = require('cors'); 
+require('dotenv').config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
-// Middleware to parse JSON and urlencoded form data
+const corsOptions = {
+  origin: 'http://localhost:3000', // your frontend's URL
+  optionsSuccessStatus: 200
+};
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -13,25 +19,24 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.post('/send-email', async (req, res) => {
   try {
     const { name, email, message } = req.body;
-
-    // Create reusable transporter object using the default SMTP transport
     let transporter = nodemailer.createTransport({
       // Update with your SMTP configuration
-      host: 'smtp.example.com',
-      port: 587,
+      //host: 'smtp.example.com',
+      //port: 587,
       secure: false, // true for 465, false for other ports
+      service: 'gmail',
       auth: {
-        user: 'your-email@example.com',
-        pass: 'your-email-password',
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
       },
     });
 
     // Send mail with defined transport object
     let info = await transporter.sendMail({
       from: `"Contact Form" <${email}>`, // sender address
-      to: 'recipient@example.com', // list of receivers
+      to: 'venura.perera1999@gmail.com', // list of receivers
       subject: 'New Message from Contact Form', // Subject line
-      text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`, // plain text body
+      text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
     });
 
     console.log('Message sent: %s', info.messageId);
@@ -42,7 +47,6 @@ app.post('/send-email', async (req, res) => {
   }
 });
 
-// Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
