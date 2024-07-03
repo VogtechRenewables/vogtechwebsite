@@ -5,7 +5,7 @@ const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 5021;
 
 const corsOptions = {
   origin: 'http://localhost:3000', // your frontend's URL
@@ -20,21 +20,20 @@ app.post('/send-email', async (req, res) => {
   try {
     const { name, email, message } = req.body;
     let transporter = nodemailer.createTransport({
-      // Update with your SMTP configuration
-      //host: 'smtp.example.com',
-      //port: 587,
-      secure: false, // true for 465, false for other ports
-      service: 'gmail',
+      host: 'mail.vogtech.ca',
+      port: 465, // use the correct port for SSL
+      secure: true, // true for 465, false for other ports
       auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
+        user: process.env.EMAIL_USER, // your corporate email
+        pass: process.env.EMAIL_PASS, // your email account's password
       },
+
     });
 
     // Send mail with defined transport object
     let info = await transporter.sendMail({
       from: `"Contact Form" <${email}>`, // sender address
-      to: 'venura.perera1999@gmail.com', // list of receivers
+      to: 'info@vogtech.ca', // list of receivers
       subject: 'New Message from Contact Form', // Subject line
       text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
     });
