@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import backgroundVideo from '../images/waterfall.mp4'; // Update the path to your MP4 video file
 import backgroundImg from '../images/home_windmill.webp';
 import LanguageContext from "../context/LanguageContext";
@@ -11,35 +11,58 @@ const Home = () => {
   const backgroundImage5 = require('../images/green_ammonia_img.webp');
 
   const { selectedLanguage } = useContext(LanguageContext);
-  const [homeData, setHomeData] = useState(null);
 
-  useEffect(() => {
-    fetchHomeData();
-  }, [selectedLanguage]);
-
-  const fetchHomeData = async () => {
-    if(selectedLanguage === "English"){
-      try {
-        const response = await fetch('http://localhost:1337/api/home');
-        const data = await response.json();
-        setHomeData(data.data.attributes);
-      } catch (error) {
-        console.error('Error fetching home data:', error);
-      }
-    } else if (selectedLanguage === "French") {
-      try {
-        const response = await fetch('http://localhost:1337/api/home-french');
-        const data = await response.json();
-        setHomeData(data.data.attributes);
-      } catch (error) {
-        console.error('Error fetching home data:', error);
-      }
+  const homeContent = {
+    English: {
+      landingText: "Welcome to Our Site",
+      landingSubHeader: "Leading the Future of Clean Energy",
+      landingSubDesc: "Innovating for a sustainable tomorrow.",
+      sectionOneHeader: "About Our Mission",
+      paragraph1: "We are committed to providing clean energy solutions.",
+      bulletTitle1: "Sustainability",
+      bulletDesc1: "We focus on sustainable energy sources.",
+      bulletTitle2: "Innovation",
+      bulletDesc2: "Bringing innovative solutions to the market.",
+      bulletTitle3: "Efficiency",
+      bulletDesc3: "Maximizing efficiency in all our projects.",
+      bulletTitle4: "Community",
+      bulletDesc4: "Engaging with communities worldwide.",
+      paragraph2: "Join us in making the world a greener place.",
+      section2Title: "Our Services",
+      card1: "Renewable Transport",
+      card2: "Carbon Management",
+      card3: "Carbon Negative Power",
+      card4: "Clean Hydro",
+      card5: "Green Ammonia"
+    },
+    French: {
+      landingText: "Bienvenue sur notre site",
+      landingSubHeader: "Diriger l'avenir de l'énergie propre",
+      landingSubDesc: "Innover pour un avenir durable.",
+      sectionOneHeader: "À propos de notre mission",
+      paragraph1: "Nous nous engageons à fournir des solutions énergétiques propres.",
+      bulletTitle1: "Durabilité",
+      bulletDesc1: "Nous nous concentrons sur des sources d'énergie durables.",
+      bulletTitle2: "Innovation",
+      bulletDesc2: "Apporter des solutions innovantes sur le marché.",
+      bulletTitle3: "Efficacité",
+      bulletDesc3: "Maximiser l'efficacité dans tous nos projets.",
+      bulletTitle4: "Communauté",
+      bulletDesc4: "S'engager avec des communautés dans le monde entier.",
+      paragraph2: "Rejoignez-nous pour rendre le monde plus vert.",
+      section2Title: "Nos services",
+      card1: "Transport renouvelable",
+      card2: "Gestion du carbone",
+      card3: "Énergie négative en carbone",
+      card4: "Hydro propre",
+      card5: "Ammoniac vert"
     }
-    
   };
+
+  const homeData = homeContent[selectedLanguage];
+
   return (
-    <>
-    {homeData ? <div>
+    <div>
       <div className="relative h-screen">
         <video 
           className="absolute top-0 left-0 object-cover w-full h-full"
@@ -126,11 +149,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-    </div>:
-    
-    <p>Loading...</p>
-    }
-    </>
+    </div>
   );
 }
 
