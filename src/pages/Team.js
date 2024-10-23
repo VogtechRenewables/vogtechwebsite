@@ -20,6 +20,16 @@ const teamContent = {
       name: 'Patrick Tekou',
       position: 'Project Manager and Mechanical Engineer',
       bio: 'Patrick Tekou, a dynamic Project Manager and Mechanical Engineer, orchestrates transformative ventures with precision and innovation. Leveraging his engineering expertise, he leads projects that redefine industries. His commitment to excellence and mechanical ingenuity drive forward-looking solutions, reshaping the future of engineering and project management.'
+    },
+    {
+      name: "Sharli Jodhani",
+      position: "Sustainability Project Manager",
+      bio: "Sharli Jodhani is a Sustainability Project Manager with an MSc in Environmental Engineering and over 5 years of experience in environmental consulting, project development, and management. She is skilled in leading and managing clean technology and ensuring compliance with Canadian environmental regulations. She has a proven track record in risk mitigation, reducing potential project risks ensuring regulatory compliance, and implementing strategic environmental solutions. She is highly adept at collaborating with stakeholders and delivering innovative solutions to meet climate change objectives. She is also experienced in engineering design, including PFDs, BFDs, P&IDs, equipment selection, specifications, and site engineering."
+    },
+    {
+      name: "Illia Negovora",
+      position: "Process Development Specialist",
+      bio: "Illia Negovora, a Process Development Specialist - Research and Development with industrial in both production and pilot scale processes. With his unique background in both Chemical Engineering and Computing Technologies, he brings an innovative approach to process development, simulation and validation. From test tube to commercial scale, he believes that processes must be designed to be scalable, safe and sustainable. ILLIA is a graduate in Chemistry Engineering from Ottawa University"
     }
   ],
   French: [
@@ -37,6 +47,16 @@ const teamContent = {
       name: 'Patrick Tekou',
       position: 'Responsable de Projet et Ingénieur Mécanique',
       bio: 'Patrick Tekou, responsable de projet dynamique et ingénieur mécanique, orchestre des projets transformants avec précision et innovation. En s’appuyant sur son expertise en ingénierie, il dirige des projets qui redéfinissent les industries. Son engagement envers l’excellence et son ingéniosité mécanique conduisent des solutions tournées vers l’avenir, remodelant l’avenir de l’ingénierie et de la gestion de projets.'
+    },
+    {
+      name: "Sharli Jodhani",
+      position: "Chef de Projet en Durabilité",
+      bio: "Sharli Jodhani est chef de projet en durabilité avec une maîtrise en ingénierie environnementale et plus de 5 ans d'expérience dans le conseil environnemental, le développement et la gestion de projets. Elle est experte dans la gestion de la technologie propre et veille à la conformité avec les réglementations environnementales canadiennes. Elle a fait ses preuves dans la réduction des risques potentiels des projets en assurant leur conformité réglementaire et en mettant en œuvre des solutions environnementales stratégiques. Elle excelle dans la collaboration avec les parties prenantes et la fourniture de solutions innovantes pour répondre aux objectifs de lutte contre le changement climatique. Elle possède également une expérience en conception technique, y compris PFD, BFD, P&ID, la sélection d'équipements, les spécifications et l'ingénierie de site."
+    },
+    {
+      name: "Illia Negovora",
+      position: "Spécialiste du Développement des Processus",
+      bio: "Illia Negovora, spécialiste du développement des processus - Recherche et Développement, avec une expérience industrielle à la fois dans les processus de production et à l’échelle pilote. Avec son parcours unique en génie chimique et en technologies informatiques, il apporte une approche innovante au développement, à la simulation et à la validation des processus. De l’éprouvette à l’échelle commerciale, il croit que les processus doivent être conçus pour être évolutifs, sûrs et durables. Illia est diplômé en génie chimique de l’Université d’Ottawa."
     }
   ]
 };
